@@ -1,6 +1,11 @@
-# Tidying data from Smartphone Accelerometers
-Maxim Shayduk  
-January 10, 2016  
+---
+title: "Tidying data from Smartphone Accelerometers"
+author: "Maxim Shayduk"
+date: "January 10, 2016"
+output: 
+  html_document:
+    keep_md: true
+---
 
 ### Synopsis ###
 The goal of this project is to demonstrate how to process the fragmented raw data and transform it to a single **tidy** data-set that can be used for later analysis.  The  principles of **tidy** data are described [this paper](http://vita.had.co.nz/papers/tidy-data.pdf>). 

@@ -46,7 +46,7 @@ dataMerged <- rbind(traindata, testdata)
 #*****************************************************************************************************
 # EXTRACT only the measurements on the mean and standard deviation for each measurement.
 # selecting mean() and std() related variables
-subsetColInd <- c(grep("-mean\\(\\)|-std\\(\\)", colnames(dataMerged)))
+subsetColInd <- c(grep("-mean\\(\\)|-std\\(\\)|meanFreq", colnames(dataMerged)))
 # subsetting by columns with dplyr and sort by activity and subject
 dataSubset <- select(dataMerged, c(subjectID, activityLabel, subsetColInd))
 dataSubset <- dataSubset[order(activityLabel, subjectID), ]
@@ -55,10 +55,10 @@ dataSubset <- dataSubset[order(activityLabel, subjectID), ]
 #******************************************************************************************************
 # CREATE TIDY independent data set with the average of each variable for each activity and each subject.
 # getting new indicies of columns (subsetColInd <- c(3:68) can be used as well):
-subsetColInd <- c(grep("-mean\\(\\)|-std\\(\\)", colnames(dataSubset)))
+subsetColInd <- c(grep("-mean\\(\\)|-std\\(\\)|meanFreq", colnames(dataSubset)))
 # averaging columns c(meanColInd, stdColInd) by subject for every activityLabel separately
 tidyData <- dataSubset[, lapply(.SD, mean), by=list(subjectID, activityLabel), .SDcols = subsetColInd]
 # to avoid periods in variable names when the data will be read in, remove "-", "(", ")"
-colnames(tidyData) <- gsub("-|\\(|\\)","", colnames(tidyData))
+# colnames(tidyData) <- gsub("-|\\(|\\)","", colnames(tidyData))
 
 write.table(tidyData, "../UCI_HAR_tidy.txt", row.names = F)

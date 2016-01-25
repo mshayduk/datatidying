@@ -55,7 +55,7 @@ The project comprises:
 
 #### run_analysis.R ####
 
-This script reads the .zip file in the working directory, binds the observations of all variables in one data.table, assigns a descriptive variable names, subsets data by a list of selected varables and saves a tidy data-set to the **UCI_HAR_tidy.txt** file.
+This script reads the .zip file in the working directory, binds the observations of all variables in one data.table, assigns a descriptive variable names, subsets data by a list of selected variables and saves a tidy data-set to the **UCI_HAR_tidy.txt** file.
 
 #### UCI_HAR_tidy.txt ####
 

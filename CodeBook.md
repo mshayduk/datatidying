@@ -114,6 +114,7 @@ The full name notation of the feature vector can be found in **features_info.txt
 ####'CREATE TIDY' block:####
   * Makes from the sorted data, created in 'EXTRACT' block, a new tidy data-set with the average of each feature variable for each activity and each subject.
   * To avoid periods in variable names when the data will be read in, removes "-", "(" and ")", so that 66 feature names become: "tBodyAccmeanX", "tBodyAccmeanY", "tBodyAccmeanZ"...etc. 
-   * Saves the tidy dataset with the write.table(...) function to the space-separated file **UCI_HAR_tidy.txt**.
+  * Saves the tidy dataset with the write.table(...) function to the space-separated file **UCI_HAR_tidy.txt**.
+
 <br>
 

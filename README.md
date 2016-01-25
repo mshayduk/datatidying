@@ -56,5 +56,6 @@ This script reads the .zip file in the working directory, binds the observations
 
 This is the output of the analysis script: a tidy data-set with descriptive variable names and reduced number of variables (as compared to the initial data).
 
-#### CodeBook.md ####  
+#### CodeBook.md #### 
+
  This markdown file describes the initial data-set, the variables, transformations performed to clean up the data and the final tidy data-set saved in **UCI_HAR_tidy.txt**.

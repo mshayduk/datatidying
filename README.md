@@ -58,4 +58,4 @@ This is the output of the analysis script: a tidy data-set with descriptive vari
 
 #### CodeBook.md #### 
 
- This markdown file describes the initial data-set, the variables, transformations performed to clean up the data and the final tidy data-set saved in **UCI_HAR_tidy.txt**.
+ This markdown file describes the initial data-set, the variables, transformations performed to clean up the data and the final tidy data-set,  saved in **UCI_HAR_tidy.txt**.

@@ -44,10 +44,10 @@ The result of the 'READ' block looks like this (a first 3 observations of first 
 
 
 ```
-##   subjectID activityLabel tBodyAcc-arCoeff()-Z,3 tGravityAcc-mean()-Z
-## 1         1      STANDING             0.49193596            0.1153749
-## 2         1      STANDING            -0.01665654            0.1093788
-## 3         1      STANDING             0.17386318            0.1018839
+##   subjectID activityLabel tBodyAcc-mean()-X tBodyAcc-mean()-Y
+## 1         1      STANDING         0.2885845       -0.02029417
+## 2         1      STANDING         0.2784188       -0.01641057
+## 3         1      STANDING         0.2796531       -0.01946716
 ```
 
 The units of variables have not changed compared to the original data set. Below the variable names and their units are listed:

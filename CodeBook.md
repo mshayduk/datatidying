@@ -69,7 +69,7 @@ The full name notation of the feature vector can be found in **features_info.txt
 
 ####'EXTRACT' block:####
   * Subsets the data-set by the set of features,  containing "-std()" or "-mean()" patterns in their name. 
-  * Hierarchically sorts the resulting subset (68 columns) by activityLabel and by subjectID.
+  * Hierarchically sorts the resulting subset  by activityLabel and by subjectID.
   
   The 66 features selected by subsetting are:
   

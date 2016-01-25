@@ -25,10 +25,9 @@ The variables descriptions and names are recorded in following files:
 - './features.txt': List of all features (561 features names).
 - './activity_labels.txt': Descriptive labels for Activity categories (six number-name pairs).
 
-
 ###Data transformations###
 
-All data processing is done within a single scripts **run_analysis.R**. To guide the eye the script is divided into several logical blocks named 'READ', 'MERGE', 'EXTRACT' and 'CREATE TIDY'. 
+All data processing is done within a single script **run_analysis.R**. To guide the eye the script is divided into several logical blocks named 'READ', 'MERGE', 'EXTRACT' and 'CREATE TIDY'. 
 The code within the corresponding block does the following:
 
 ####'READ' block:####
@@ -51,17 +50,70 @@ The result of the 'READ' block looks like this (a first 3 observations of first 
 ## 3         1      STANDING             0.17386318            0.1018839
 ```
 
+The units of variables have not changed compared to the original data set. Below the variable names and their units are listed:
+
+| Column| Variable name  | Decription  | Type  | Units  | Range  |
+|---|---|---|---|---|---|
+|1| subjectID  |  Volunteer's IDs |  int |  # |  [1,30] |
+|2| activityLabel | Activity categories | factor | category | 6 levels |
+|3| tBodyAcc-mean()-X | 1-st feature , extracted from accelerometer signals | num| dimensionless | [-1,1] |
+|4| tBodyAcc-mean()-Y | 2-nd feature , extracted from accelerometer signals | num| dimensionless | [-1,1] |
+|...| ... | ... | ...| ... | [-1,1] |
+|562| angle(Y,gravityMean) | 560-th feature , extracted from accelerometer signals | num| dimensionless | [-1,1] |
+|563| angle(Z,gravityMean) | 561-st feature , extracted from accelerometer signals | num| dimensionless | [-1,1] |
+
+The full name notation of the feature vector can be found in **features_info.txt** file that comes with the original dataset.
 
 ####'MERGE' block:####
   * Merges the training and the test sets to one data-set with rbind(...)
 
 ####'EXTRACT' block:####
-  * Subsets the data-set by the certain set of variables.
-  * Sorts the resulting data.
+  * Subsets the data-set by the set of features,  containing "-std()" or "-mean()" patterns in their name. 
+  * Hierarchically sorts the resulting subset (68 columns) by activityLabel and by subjectID.
+  
+  The 66 features selected by subsetting are:
+  
+
+```
+##  [1] "tBodyAcc-mean()-X"           "tBodyAcc-mean()-Y"          
+##  [3] "tBodyAcc-mean()-Z"           "tBodyAcc-std()-X"           
+##  [5] "tBodyAcc-std()-Y"            "tBodyAcc-std()-Z"           
+##  [7] "tGravityAcc-mean()-X"        "tGravityAcc-mean()-Y"       
+##  [9] "tGravityAcc-mean()-Z"        "tGravityAcc-std()-X"        
+## [11] "tGravityAcc-std()-Y"         "tGravityAcc-std()-Z"        
+## [13] "tBodyAccJerk-mean()-X"       "tBodyAccJerk-mean()-Y"      
+## [15] "tBodyAccJerk-mean()-Z"       "tBodyAccJerk-std()-X"       
+## [17] "tBodyAccJerk-std()-Y"        "tBodyAccJerk-std()-Z"       
+## [19] "tBodyGyro-mean()-X"          "tBodyGyro-mean()-Y"         
+## [21] "tBodyGyro-mean()-Z"          "tBodyGyro-std()-X"          
+## [23] "tBodyGyro-std()-Y"           "tBodyGyro-std()-Z"          
+## [25] "tBodyGyroJerk-mean()-X"      "tBodyGyroJerk-mean()-Y"     
+## [27] "tBodyGyroJerk-mean()-Z"      "tBodyGyroJerk-std()-X"      
+## [29] "tBodyGyroJerk-std()-Y"       "tBodyGyroJerk-std()-Z"      
+## [31] "tBodyAccMag-mean()"          "tBodyAccMag-std()"          
+## [33] "tGravityAccMag-mean()"       "tGravityAccMag-std()"       
+## [35] "tBodyAccJerkMag-mean()"      "tBodyAccJerkMag-std()"      
+## [37] "tBodyGyroMag-mean()"         "tBodyGyroMag-std()"         
+## [39] "tBodyGyroJerkMag-mean()"     "tBodyGyroJerkMag-std()"     
+## [41] "fBodyAcc-mean()-X"           "fBodyAcc-mean()-Y"          
+## [43] "fBodyAcc-mean()-Z"           "fBodyAcc-std()-X"           
+## [45] "fBodyAcc-std()-Y"            "fBodyAcc-std()-Z"           
+## [47] "fBodyAccJerk-mean()-X"       "fBodyAccJerk-mean()-Y"      
+## [49] "fBodyAccJerk-mean()-Z"       "fBodyAccJerk-std()-X"       
+## [51] "fBodyAccJerk-std()-Y"        "fBodyAccJerk-std()-Z"       
+## [53] "fBodyGyro-mean()-X"          "fBodyGyro-mean()-Y"         
+## [55] "fBodyGyro-mean()-Z"          "fBodyGyro-std()-X"          
+## [57] "fBodyGyro-std()-Y"           "fBodyGyro-std()-Z"          
+## [59] "fBodyAccMag-mean()"          "fBodyAccMag-std()"          
+## [61] "fBodyBodyAccJerkMag-mean()"  "fBodyBodyAccJerkMag-std()"  
+## [63] "fBodyBodyGyroMag-mean()"     "fBodyBodyGyroMag-std()"     
+## [65] "fBodyBodyGyroJerkMag-mean()" "fBodyBodyGyroJerkMag-std()"
+```
+ 
     
 ####'CREATE TIDY' block:####
-  * Makes from the sorted data, created in 'EXTRACT' block, a new tidy data-set with the average of each variable for each activity and each subject.
-  * Saves the tidy dataset to the file **UCI_HAR_tidy.txt**
-
-###Tidy dataset####
+  * Makes from the sorted data, created in 'EXTRACT' block, a new tidy data-set with the average of each feature variable for each activity and each subject.
+  * To avoid periods in variable names when the data will be read in, removes "-", "(" and ")", so that 66 feature names become: "tBodyAccmeanX", "tBodyAccmeanY", "tBodyAccmeanZ"...etc. 
+   * Saves the tidy dataset with the write.table(...) function to the space-separated file **UCI_HAR_tidy.txt**.
+<br>
 

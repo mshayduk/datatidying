@@ -59,6 +59,6 @@ subsetColInd <- c(grep("-mean\\(\\)|-std\\(\\)|meanFreq", colnames(dataSubset)))
 # averaging columns c(meanColInd, stdColInd) by subject for every activityLabel separately
 tidyData <- dataSubset[, lapply(.SD, mean), by=list(subjectID, activityLabel), .SDcols = subsetColInd]
 # to avoid periods in variable names when the data will be read in, remove "-", "(", ")"
-# colnames(tidyData) <- gsub("-|\\(|\\)","", colnames(tidyData))
+colnames(tidyData) <- gsub("-|\\(|\\)","", colnames(tidyData))
 
 write.table(tidyData, "../UCI_HAR_tidy.txt", row.names = F)
